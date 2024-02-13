@@ -1,0 +1,136 @@
+:root {
+  /* font-family: "Silkscreen", sans-serif; (Font secondario)*/
+  font-family: "IBM Plex Mono", monospace;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: black;
+  background-color: #b4b7c0;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+
+/* body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+ */
+/* button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+ */
+
+ 
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem 1rem;
+  background-color: #dbd2d2;
+  figure{
+    display: flex;
+    align-items: center;
+    margin: 0;
+    img{
+      width: 60px;
+    }
+  }
+  menu{
+    display: flex;
+    gap: 1.5rem;
+    font-weight: bold;
+    list-style-type: none;
+    color: #e75562;
+  }
+}
+
+.home-page {
+  padding: 20px;
+}
+
+.title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px; /* Aggiungi spazio inferiore per separare l'intestazione dal contenuto */
+}
+
+.content {
+  display: grid;
+  grid-template-columns: auto 1fr; /* L'immagine occupa lo spazio minimo necessario, il testo e il pulsante occupano il resto dello spazio disponibile */
+  grid-column-gap: 20px; /* Aggiungi spazio tra l'immagine e il testo */
+  align-items: start; /* Allinea gli elementi in alto */
+}
+
+.img-container {
+  width: 100%; /* Assicurati che l'immagine occupi tutto lo spazio disponibile */
+  
+}
+
+img {
+  max-width: 900px;
+  height: auto;
+  margin-right: 20px;
+  border-radius: 1rem;
+}
+
+.text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Allinea il testo e il pulsante in alto */
+}
+
+.intro {
+  margin-bottom: 20px;
+}
+
+.explore-btn {
+  padding: 10px 20px;
+  background-color: #e75562;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.explore-btn:hover {
+  background-color: #e77f87;
+}
+
+.footer {
+  text-align: center;
+  padding: 1rem 0;
+  background-color: #dbd2d2;
+}
