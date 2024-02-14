@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 export default () => {
     return (
         <div className="home-page">
@@ -8,7 +10,7 @@ export default () => {
                 </figure>
                 <div className="text-container">
                     <p className="intro">Hi, my name is proffesor Oak. Looks like you want to be a Pokemon Trainer! If you're ready to begin your adventure, take a look at the pokedex, find your favourite pokemons, learn about them and most important, fetc... Ups, I meant, catch them all!</p>
-                    <button className="explore-btn">Go to the Pokedex</button>
+                    <Link to='pokemons' className="explore-btn">Go to the Pokedex</Link>
                 </div>
             </div>
         </div>
