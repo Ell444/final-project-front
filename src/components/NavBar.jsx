@@ -23,9 +23,6 @@ export default () => {
                     <li>
                         <NavLink to="/login">Log In</NavLink>
                     </li>
-                    {/*   <li>
-                        Qui manca ancora la pagina pokedex.(?)
-                    </li> */}
                 </>}
                 {user && <>
                     <li>

@@ -1,13 +1,19 @@
 import axios from "axios";
 import { createContext, useContext, useState } from "react";
-import useStorage from "../hooks/useStorage";
 const { VITE_API_URL } = import.meta.env;
 
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
 
-    const [user, setUser] = useStorage(null);
+    const oldValue = localStorage.getItem('storedUser'); //oldvalue = ciò che sta già salvato nel localstorage
+
+    const [userData, setUserData] = useState(oldValue !== null ? JSON.parse(oldValue) : null);
+
+    const changeData = (newValue) => {
+        setUserData(newValue);
+        localStorage.setItem('storedUser', JSON.stringify(newValue));
+    }
 
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -21,8 +27,8 @@ export const UserProvider = ({ children }) => {
 
         try {
             const body = { email, password };
-            const { data: user } = await axios.post(`${VITE_API_URL}/auth/signup`, body);
-            setUser(user);
+            const { data: userAndToken } = await axios.post(`${VITE_API_URL}/auth/signup`, body);
+            changeData(userAndToken);
         } catch (error) {
             console.error(error);
             setError(error.response.user);
@@ -40,8 +46,8 @@ export const UserProvider = ({ children }) => {
 
         try {
             const body = { email, password };
-            const { data: user } = await axios.post(`${VITE_API_URL}/auth/login`, body);
-            setUser(user);
+            const { data: userAndToken } = await axios.post(`${VITE_API_URL}/auth/login`, body);
+            changeData(userAndToken);
         } catch (error) {
             console.error(error);
             setError(error.response.user);
@@ -51,11 +57,11 @@ export const UserProvider = ({ children }) => {
     }
 
     const logOut = () => {
-        setUser(null);
+        changeData({ user: null });
     }
 
     const value = {
-        user,
+        ...userData, // per estrarre separatamente dal context user e token
         signUp,
         logIn,
         logOut,

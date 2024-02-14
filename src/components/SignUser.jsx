@@ -54,7 +54,7 @@ export default ({ type }) => {
                         onChange={(e) => changeData('password', e.target.value)}
                     />
                 </section>
-                {type === 'signUp' &&
+                {type === 'signup' &&
                     <section className="form-value required">
                         <p>Confirm Password</p>
                         <input

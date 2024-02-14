@@ -1,14 +1,18 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { axiosHeaders } from "../../lib/utilities";
+import { useUser } from "../context/UserContext";
 const { VITE_API_URL } = import.meta.env;
+
 
 export default () => {
 
     const [pokemons, setPokemons] = useState();
     const [error, setError] = useState();
+    const { token } = useUser();
 
     useEffect(() => {
-        axios.get(`${VITE_API_URL}/pokemons`)
+        axios.get(`${VITE_API_URL}/pokemons`, axiosHeaders(token))
             .then(res => setPokemons(res.data))
             .catch(error => {
                 console.error(error);
