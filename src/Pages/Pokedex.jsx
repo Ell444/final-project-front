@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { axiosHeaders } from "../../lib/utilities";
 import { useUser } from "../context/UserContext";
 import PokemonModal from "../components/PokemonModal";
+import PokemonEncounterModal from "../components/PokemonEncounterModal";
 const { VITE_API_URL } = import.meta.env;
 
 
@@ -12,6 +13,7 @@ export default () => {
     const [error, setError] = useState();
     const { token } = useUser();
     const [modalOpen, setModalOpen] = useState(null);
+    const [encounteredPokemon, setEncounteredPokemon] = useState(null);
 
     useEffect(() => {
         axios.get(`${VITE_API_URL}/pokemons`, axiosHeaders(token))
@@ -22,6 +24,27 @@ export default () => {
             })
     }, []);
 
+
+    const getRandomPokemon = async () => {
+
+        try {
+            const response = await axios.get(`${VITE_API_URL}/pokemonencounter/random`, axiosHeaders(token))
+            return response.data;
+        } catch (error) {
+            console.error(`Could not get the random Pokemon. Please, try again`, error.message)
+            throw error;
+        }
+    };
+
+    const handleEncounterPokemon = async () => {
+        try {
+            const randomPokemon = await getRandomPokemon();
+            setEncounteredPokemon(randomPokemon);
+        } catch (error) {
+            console.error('No random pokemon was found.', error);
+            throw error;
+        }
+    }
 
     return (<>
 
@@ -39,7 +62,7 @@ export default () => {
                     {pokemonsData.length === 0 && <div>No pokemon available.</div>}
                     {pokemonsData.length !== 0 &&
                         <ul className="pokemon-list">
-                            <button>To the tall grass!</button>
+                            <button onClick={handleEncounterPokemon}>To the tall grass!</button>
                             {pokemonsData.map(p => {
                                 const props = { ...p, isOpen: modalOpen, setIsOpen: setModalOpen }
                                 return (
@@ -58,8 +81,10 @@ export default () => {
                     }
                 </>}
             </>}
-        </div >
-
+        </div>
+        {encounteredPokemon && (
+            <PokemonEncounterModal isOpen={true} setIsOpen={setModalOpen} pokemon={encounteredPokemon.pokemon} />
+        )}
     </>)
 
 }
