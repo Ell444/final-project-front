@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export default ({ isOpen, setIsOpen, name, id, types, description, image }) => {
+export default ({ isOpen, setIsOpen, name, id, type, description, image }) => {
 
     const dialogRef = useRef(); //Utilizzo useRef per far riferimento al dialog con la variabile dialogRef.
 
@@ -22,11 +22,13 @@ export default ({ isOpen, setIsOpen, name, id, types, description, image }) => {
                     <img src={image} alt="" />
                 </figure>
                 <p>{id} {name}</p>
-                <p>{types}</p>
+                {type && (
+                    <div>
+                        <p>Type: {Array.isArray(type) ? type.join(', ') : type}</p>
+                    </div>
+                )}
                 <p>{description}</p>
             </section>
-        </dialog>
+        </dialog >
     )
 }
-
-//Riga 25, TYPES. Ricordare che è un array e implementare la renderizzazione con un map.

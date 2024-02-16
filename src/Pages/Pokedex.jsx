@@ -66,7 +66,6 @@ export default () => {
                             {pokemonsData.map(p => {
                                 const props = { ...p, isOpen: modalOpen, setIsOpen: setModalOpen }
                                 return (
-
                                     <li key={p._id} className="pokemon-card" >
                                         {modalOpen === p._id &&
                                             <PokemonModal {...props} />}
@@ -83,7 +82,12 @@ export default () => {
             </>}
         </div>
         {encounteredPokemon && (
-            <PokemonEncounterModal isOpen={true} setIsOpen={setModalOpen} pokemon={encounteredPokemon.pokemon} />
+            <PokemonEncounterModal isOpen={true} setIsOpen={setModalOpen} pokemon={encounteredPokemon.pokemon}>
+                <div>
+                    <h2>Oh! A wild Pokemon appeard!</h2>
+                    <div><button>Throw Pokeball</button></div>
+                </div>
+            </PokemonEncounterModal>
         )}
     </>)
 

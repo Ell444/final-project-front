@@ -18,14 +18,23 @@ export default ({ isOpen, setIsOpen, pokemon }) => {
                 <button onClick={() => { setIsOpen(null) }}>X</button>
             </div>
             <section className="poke-container">
+                <h2>Oh! A wild pokemon appeard!</h2>
                 <figure>
                     <img src={pokemon.image} alt="" />
                 </figure>
                 <p>{pokemon.id} {pokemon.name}</p>
-                <p>{pokemon.types}</p>
+                {pokemon.type && (
+                    <div>
+                        <p>Type: {Array.isArray(pokemon.type) ? pokemon.type.join(', ') : pokemon.type}</p>
+                    </div>
+                )}
+                <div>
+                    <button>Throw Pokeball!</button>
+                    <button>Run away!</button>
+                </div>
             </section>
         </dialog>
     )
 }
 
-//Riga 25, TYPES. Ricordare che è un array e implementare la renderizzazione con un map.
+
