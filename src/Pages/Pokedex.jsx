@@ -1,55 +1,64 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { axiosHeaders } from "../../lib/utilities";
 import { useUser } from "../context/UserContext";
+import PokemonModal from "../components/PokemonModal";
 const { VITE_API_URL } = import.meta.env;
 
 
 export default () => {
 
-    const [pokemons, setPokemons] = useState();
+    const [pokemonsData, setPokemonsData] = useState([]);
     const [error, setError] = useState();
     const { token } = useUser();
+    const [modalOpen, setModalOpen] = useState(null);
 
     useEffect(() => {
         axios.get(`${VITE_API_URL}/pokemons`, axiosHeaders(token))
-            .then(res => setPokemons(res.data))
+            .then(res => setPokemonsData(res.data))
             .catch(error => {
                 console.error(error);
                 setError(true);
             })
     }, []);
 
+
     return (<>
 
-        <div className="pokedex">
+        <div className="pokedex page">
             <h1>Pokedex</h1>
 
             {error && <div className="info error">There was an error.</div>}
             {!error && <>
-                {!pokemons &&
+                {!pokemonsData &&
                     <div className="loader">
                         <img src="/pokemon-loader.gif" alt="loader gif" />
                     </div>
                 }
-                {pokemons && <>
-                    {pokemons.length === 0 && <div>No pokemon available.</div>}
-                    {pokemons.length !== 0 &&
+                {pokemonsData && <>
+                    {pokemonsData.length === 0 && <div>No pokemon available.</div>}
+                    {pokemonsData.length !== 0 &&
                         <ul className="pokemon-list">
-                            {pokemons.map(p => (
-                                <li key={p._id} className="pokemon-card">
-                                    {p.id} {p.name}
-                                    <figure className="poke-img">
-                                        <img src={p.image} alt={`Picture of ${p.name}`} />
-                                    </figure>
+                            <button>To the tall grass!</button>
+                            {pokemonsData.map(p => {
+                                const props = { ...p, isOpen: modalOpen, setIsOpen: setModalOpen }
+                                return (
 
-                                </li>
-                            ))}
+                                    <li key={p._id} className="pokemon-card" >
+                                        {modalOpen === p._id &&
+                                            <PokemonModal {...props} />}
+                                        {p.id} {p.name}
+                                        <figure onClick={() => { setModalOpen(p._id) }} className="poke-img">
+                                            <img src={p.image} alt={`Picture of ${p.name}`} />
+                                        </figure>
+                                    </li>
+                                )
+                            })}
                         </ul>
                     }
                 </>}
             </>}
-        </div>
+        </div >
 
     </>)
 

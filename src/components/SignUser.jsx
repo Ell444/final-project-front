@@ -33,7 +33,7 @@ export default ({ type }) => {
     }
 
     return (
-        <div className="signup">
+        <div className="signup page">
             <h2>{title}</h2>
             <form onSubmit={signUser}>
                 <section className="form-value required">

@@ -8,6 +8,7 @@ import { useUser } from './context/UserContext'
 import NotFound from './Pages/NotFound'
 import Pokedex from './Pages/Pokedex'
 
+
 function App() {
 
   const { user } = useUser();

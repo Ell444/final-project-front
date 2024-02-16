@@ -2,7 +2,7 @@ export default () => {
 
     return (
         <footer className="footer">
-            <p> &copy;Laura Sirigu, 2024 - All rights blablablabla. </p>
+            <p> &copy;2024, Laura Sirigu - All rights blablablabla. </p>
         </footer>
     )
 }

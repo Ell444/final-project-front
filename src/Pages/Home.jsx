@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 export default () => {
     return (
-        <div className="home-page">
+        <div className="home-page page">
             <h1 className="title">Welcome to the wonderful world of Pokemon! Are you ready to catch them all?</h1>
             <div className="content">
                 <figure className="img-container">
