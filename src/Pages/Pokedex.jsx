@@ -14,6 +14,7 @@ export default () => {
     const { token } = useUser();
     const [modalOpen, setModalOpen] = useState(null);
     const [encounteredPokemon, setEncounteredPokemon] = useState(null);
+    const [isEncouterModalOpen, setIsEncounterModalOpen] = useState(null);
 
     useEffect(() => {
         axios.get(`${VITE_API_URL}/pokemons`, axiosHeaders(token))
@@ -40,6 +41,7 @@ export default () => {
         try {
             const randomPokemon = await getRandomPokemon();
             setEncounteredPokemon(randomPokemon);
+            setIsEncounterModalOpen(true);
         } catch (error) {
             console.error('No random pokemon was found.', error);
             throw error;
@@ -81,13 +83,10 @@ export default () => {
                 </>}
             </>}
         </div>
+
+
         {encounteredPokemon && (
-            <PokemonEncounterModal isOpen={true} setIsOpen={setModalOpen} pokemon={encounteredPokemon.pokemon}>
-                <div>
-                    <h2>Oh! A wild Pokemon appeard!</h2>
-                    <div><button>Throw Pokeball</button></div>
-                </div>
-            </PokemonEncounterModal>
+            <PokemonEncounterModal isOpen={isEncouterModalOpen} setIsOpen={setIsEncounterModalOpen} pokemon={encounteredPokemon.pokemon} />
         )}
     </>)
 
