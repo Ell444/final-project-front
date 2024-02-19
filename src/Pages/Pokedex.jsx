@@ -15,6 +15,7 @@ export default () => {
     const [modalOpen, setModalOpen] = useState(null);
     const [encounteredPokemon, setEncounteredPokemon] = useState(null);
     const [isEncouterModalOpen, setIsEncounterModalOpen] = useState(null);
+    const [team, setTeam] = useState([]);
 
     useEffect(() => {
         axios.get(`${VITE_API_URL}/pokemons`, axiosHeaders(token))
@@ -25,7 +26,7 @@ export default () => {
             })
     }, []);
 
-
+    //Chiamata per ottenere un pokemon randomico. 
     const getRandomPokemon = async () => {
 
         try {
@@ -37,6 +38,25 @@ export default () => {
         }
     };
 
+    //Chiamata per aggiungere PokemonCustom al Team. **NOT WORKING. Torna sempre 404
+    const addToTeam = async (pokemon) => {
+        try {
+            setTeam([...team, pokemon]);
+            await axios.post(`${VITE_API_URL}/custompokemons`, {
+                name: pokemon.name,
+                id: pokemon.id,
+                nickname: pokemon.nickname,
+                staticPokemonId: pokemon.staticPokemonId,
+                level: pokemon.level,
+                attacks: pokemon.attacks,
+                image: pokemon.image
+            }, axiosHeaders(token))
+        } catch (error) {
+            console.error("Error adding Pokemon to team:", error);
+        }
+    }
+
+    //Funzione che mi gestisce l'apparizione randomica di un pokemon al click del pulsante.
     const handleEncounterPokemon = async () => {
         try {
             const randomPokemon = await getRandomPokemon();
@@ -51,8 +71,10 @@ export default () => {
     return (<>
 
         <div className="pokedex page">
-            <h1>Pokedex</h1>
-
+            <div className="title-btn-container">
+                <h1>Pokedex</h1>
+                <button onClick={handleEncounterPokemon}>To the tall grass!</button>
+            </div>
             {error && <div className="info error">There was an error.</div>}
             {!error && <>
                 {!pokemonsData &&
@@ -64,15 +86,18 @@ export default () => {
                     {pokemonsData.length === 0 && <div>No pokemon available.</div>}
                     {pokemonsData.length !== 0 &&
                         <ul className="pokemon-list">
-                            <button onClick={handleEncounterPokemon}>To the tall grass!</button>
                             {pokemonsData.map(p => {
                                 const props = { ...p, isOpen: modalOpen, setIsOpen: setModalOpen }
                                 return (
-                                    <li key={p._id} className="pokemon-card" >
+                                    <li key={p._id}
+                                        className="pokemon-card"
+                                    >
                                         {modalOpen === p._id &&
                                             <PokemonModal {...props} />}
                                         {p.id} {p.name}
-                                        <figure onClick={() => { setModalOpen(p._id) }} className="poke-img">
+                                        <figure
+                                            onClick={() => { setModalOpen(p._id) }}
+                                            className="poke-img">
                                             <img src={p.image} alt={`Picture of ${p.name}`} />
                                         </figure>
                                     </li>
@@ -86,7 +111,12 @@ export default () => {
 
 
         {encounteredPokemon && (
-            <PokemonEncounterModal isOpen={isEncouterModalOpen} setIsOpen={setIsEncounterModalOpen} pokemon={encounteredPokemon.pokemon} />
+            <PokemonEncounterModal
+                isOpen={isEncouterModalOpen}
+                setIsOpen={setIsEncounterModalOpen}
+                pokemon={encounteredPokemon.pokemon}
+                addToTeam={addToTeam}
+            />
         )}
     </>)
 

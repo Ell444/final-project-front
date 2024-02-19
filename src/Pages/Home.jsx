@@ -5,7 +5,7 @@ export default () => {
         <div className="home-page page">
             <h1 className="title">Welcome to the wonderful world of Pokemon! Are you ready to catch them all?</h1>
             <div className="content">
-                <figure className="img-container">
+                <figure className="home-img">
                     <img src="/Professor_Oak.jpg" alt="Professor Oak with Mew" />
                 </figure>
                 <div className="text-container">

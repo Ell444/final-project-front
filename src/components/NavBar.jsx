@@ -9,11 +9,11 @@ export default () => {
 
     return (
         <nav className="navbar">
-            <figure>
+            <figure className="navbar-img">
                 <Link to="/">
                     <img src="/pokeball-logo.webp" alt="Logo" />
                 </Link>
-                <span>Welcome {user && user.email}!</span>
+                <span>{user && user.email}</span>
             </figure>
             <menu>
                 {!user && <>

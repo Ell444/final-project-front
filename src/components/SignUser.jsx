@@ -33,47 +33,56 @@ export default ({ type }) => {
     }
 
     return (
-        <div className="signup page">
-            <h2>{title}</h2>
-            <form onSubmit={signUser}>
-                <section className="form-value required">
-                    <p>Email</p>
-                    <input
-                        type="email"
-                        required
-                        value={formData.email}
-                        onChange={(e) => changeData('email', e.target.value)}
-                    />
-                </section>
-                <section className="form-value required">
-                    <p>Password</p>
-                    <input
-                        type="password"
-                        required
-                        value={formData.password}
-                        onChange={(e) => changeData('password', e.target.value)}
-                    />
-                </section>
-                {type === 'signup' &&
-                    <section className="form-value required">
-                        <p>Confirm Password</p>
-                        <input
-                            type="password"
-                            required
-                            value={formData.password2}
-                            onChange={(e) => changeData('password2', e.target.value)}
-                        />
-                    </section>
-                }
-                <div className="buttons">
-                    <button disabled={loading}>{title}</button>
+        <>
+            <div className="signup-wrapper">
+                <h1>{title}</h1>
+                <figure className="pikachu-gif">
+                    <img src="/login-pikachu.gif" alt="Running gif of pikachu" />
+                </figure>
+                <div className="signup page">
+                    <form onSubmit={signUser}>
+                        <section className="form-value required">
+                            <p>Email</p>
+                            <input
+                                type="email"
+                                required
+                                value={formData.email}
+                                onChange={(e) => changeData('email', e.target.value)}
+                            />
+                        </section>
+                        <section className="form-value required">
+                            <p>Password</p>
+                            <input
+                                type="password"
+                                required
+                                value={formData.password}
+                                onChange={(e) => changeData('password', e.target.value)}
+                            />
+                        </section>
+                        {type === 'signup' &&
+                            <section className="form-value required">
+                                <p>Confirm Password</p>
+                                <input
+                                    type="password"
+                                    required
+                                    value={formData.password2}
+                                    onChange={(e) => changeData('password2', e.target.value)}
+                                />
+                            </section>
+                        }
+                        <div className="buttons">
+                            <button disabled={loading}>{title}</button>
+                        </div>
+                    </form>
                 </div>
-            </form>
-            {loading && <div className="loader">
-                <img src="/pokemon-loader.gif" alt="loader gif" />
-            </div>}
-            {error && <div className="info error">{error}</div>}
-            {confirmPasswordError && <div className="info error">{confirmPasswordError}</div>}
-        </div>
+
+                {loading && <div className="loader">
+                    <img src="/pokemon-loader.gif" alt="loader gif" />
+                </div>}
+                {error && <div className="info error">{error}</div>}
+                {confirmPasswordError && <div className="info error">{confirmPasswordError}</div>}
+            </div>
+        </>
+
     )
 }
