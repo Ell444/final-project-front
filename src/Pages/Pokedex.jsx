@@ -9,13 +9,12 @@ const { VITE_API_URL } = import.meta.env;
 
 export default () => {
 
-    const [pokemonsData, setPokemonsData] = useState([]);
+    const [pokemonsData, setPokemonsData] = useState();
     const [error, setError] = useState();
     const { token } = useUser();
     const [modalOpen, setModalOpen] = useState(null);
     const [encounteredPokemon, setEncounteredPokemon] = useState(null);
     const [isEncouterModalOpen, setIsEncounterModalOpen] = useState(null);
-    const [team, setTeam] = useState([]);
 
     useEffect(() => {
         axios.get(`${VITE_API_URL}/pokemons`, axiosHeaders(token))
@@ -28,7 +27,6 @@ export default () => {
 
     //Chiamata per ottenere un pokemon randomico. 
     const getRandomPokemon = async () => {
-
         try {
             const response = await axios.get(`${VITE_API_URL}/pokemonencounter/random`, axiosHeaders(token))
             return response.data;
@@ -37,24 +35,6 @@ export default () => {
             throw error;
         }
     };
-
-    //Chiamata per aggiungere PokemonCustom al Team. **NOT WORKING. Torna sempre 404
-    const addToTeam = async (pokemon) => {
-        try {
-            setTeam([...team, pokemon]);
-            await axios.post(`${VITE_API_URL}/custompokemons`, {
-                name: pokemon.name,
-                id: pokemon.id,
-                nickname: pokemon.nickname,
-                staticPokemonId: pokemon.staticPokemonId,
-                level: pokemon.level,
-                attacks: pokemon.attacks,
-                image: pokemon.image
-            }, axiosHeaders(token))
-        } catch (error) {
-            console.error("Error adding Pokemon to team:", error);
-        }
-    }
 
     //Funzione che mi gestisce l'apparizione randomica di un pokemon al click del pulsante.
     const handleEncounterPokemon = async () => {
@@ -67,7 +47,6 @@ export default () => {
             throw error;
         }
     }
-
     return (<>
 
         <div className="pokedex page">
@@ -115,7 +94,6 @@ export default () => {
                 isOpen={isEncouterModalOpen}
                 setIsOpen={setIsEncounterModalOpen}
                 pokemon={encounteredPokemon.pokemon}
-                addToTeam={addToTeam}
             />
         )}
     </>)

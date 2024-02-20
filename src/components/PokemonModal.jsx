@@ -32,7 +32,7 @@ export default ({ isOpen, setIsOpen, name, id, type, description, image }) => {
                 <p>{id} {name}</p>
                 {type && (
                     <div>
-                        <p>Type: {Array.isArray(type) ? type.join(', ') : type}</p>
+                        <p><strong>Type:</strong> {Array.isArray(type) ? type.join(', ') : type}</p>
                     </div>
                 )}
                 <p>{description}</p>

@@ -41,8 +41,8 @@ export default ({ type }) => {
                 </figure>
                 <div className="signup page">
                     <form onSubmit={signUser}>
-                        <section className="form-value required">
-                            <p>Email</p>
+                        <section className="form-value">
+                            <p>Email*</p>
                             <input
                                 type="email"
                                 required
@@ -50,8 +50,8 @@ export default ({ type }) => {
                                 onChange={(e) => changeData('email', e.target.value)}
                             />
                         </section>
-                        <section className="form-value required">
-                            <p>Password</p>
+                        <section className="form-value">
+                            <p>Password*</p>
                             <input
                                 type="password"
                                 required
@@ -60,8 +60,8 @@ export default ({ type }) => {
                             />
                         </section>
                         {type === 'signup' &&
-                            <section className="form-value required">
-                                <p>Confirm Password</p>
+                            <section className="form-value">
+                                <p>Confirm Password*</p>
                                 <input
                                     type="password"
                                     required

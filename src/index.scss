@@ -237,61 +237,61 @@ button {
   background-color: #626762;
 }
 .fire-background {
-  background-color: #950708;
+  background-color: rgba(149, 7, 8, 0.9);
 }
 .water-background {
-  background-color: #0554b7;
+  background-color: rgba(5, 84, 183, 0.9);
 }
 .grass-background {
-  background-color: #1b670a;
+  background-color: rgba(27, 103, 10, 0.9);
 }
 .electric-background {
-  background-color: #e4af00;
+  background-color: rgba(228, 175, 0, 0.9);
 }
-.normale-background {
-  background-color: #696f69;
+.normal-background {
+  background-color: rgba(105, 111, 105, 0.9);
 }
 .ice-background {
-  background-color: #09a1c8;
+  background-color: rgba(9, 161, 200, 0.9);
 }
 .fighting-background {
-  background-color: #b65b00;
+  background-color: rgba(182, 91, 0, 0.9);
 }
 .poison-background {
-  background-color: #551186;
+  background-color: rgba(85, 17, 134, 0.9);
 }
 .ground-background {
-  background-color: #562906;
+  background-color: rgba(86, 41, 6, 0.9);
 }
 .flying-background {
-  background-color: #387cbd;
+  background-color: rgba(56, 124, 189, 0.9);
 }
 .psychic-background {
-  background-color: #cc265b;
+  background-color: rgba(204, 38, 91, 0.9);
 }
 .bug-background {
-  background-color: #637003;
+  background-color: rgba(99, 112, 3, 0.9);
 }
 .fairy-background {
-  background-color: #c73bc7;
+  background-color: rgba(199, 59, 199, 0.9);
 }
 .rock-background {
-  background-color: #7b7441;
+  background-color: rgba(123, 116, 65, 0.9);
 }
 .dragon-background {
-  background-color: #1c2cab;
+  background-color: rgba(28, 44, 171, 0.9);
 }
 .ghost-background {
-  background-color: #421242;
+  background-color: rgba(66, 18, 66, 0.9);
 }
 .steel-background {
-  background-color: #2f6f86;
+  background-color: rgba(47, 111, 134, 0.9);
 }
 
   //----------------------------------------------------------//
 
 
-  //Stile per pagina login/signup
+  //Stile per pagina LOGIN/SIGNUP
   .signup-wrapper{
     display: flex;
     flex-direction: column;
@@ -305,7 +305,7 @@ button {
     }
   }
   .signup{
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 10px;
     width: 400px;
     form {
@@ -328,6 +328,13 @@ button {
           border: 1px solid #cccccc;
           border-radius: 5px;
           font-size: 1rem;
+        }
+      }
+      .buttons{
+        display: flex;
+        justify-content: center;
+        button{
+          width: 100%;
         }
       }
     }

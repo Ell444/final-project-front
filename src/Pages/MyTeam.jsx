@@ -1,35 +1,35 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
-const { VITE_API_URL } = import.meta.env;
-import { axiosHeaders } from "../../lib/utilities";
 import { useUser } from "../context/UserContext";
-
+import { useState } from "react";
 
 export default () => {
 
-    const { token } = useUser();
-    const [team, setTeam] = useState([]);
+    //creare uno state team([]);
+    //creare useEffect con chiamata axios.get a user/:id
+    //salvare la response (user) nello state team(user.team)
+    //(response.data.team)
+    //map di team con creazione piccole card con link a pagina del customPokemon singolo ed editabile.
+    //?.map
 
-    useEffect(() => {
-        const fetchTeam = async () => {
-            try {
-                const response = await axios.get(`${VITE_API_URL}/myteam`, axiosHeaders(token));
-                const teamData = response.data;
-                setTeam(teamData);
-            } catch (error) {
-                console.error('Error getting the team:', error);
-            }
-        }
-        fetchTeam();
-    }, []);
+    const { user, token } = useUser();
+    const [error, setError] = useState();
 
     return (
         <div className="my-team page">
             <h1>My Team</h1>
             <ul>
-                {team.map((pokemon) => {
-                    <li key={pokemon.id}>{pokemon.name}</li>
-                })}
+                {console.log(user)}
+                {user.team.map((cpId) => {
+                    let cPokemon;
+                    const fetchPokemon = await axios.get(`${VITE_API_URL}/custompokemons`, axiosHeaders(token))
+                    try {
+                        cPokemon = res.data;
+
+                    } catch (error) {
+                        console.error(error);
+                        setError(true);
+                        return <li key={ }>{pokemon.name}</li>
+                    })}
             </ul>
         </div>
     )
