@@ -63,36 +63,41 @@ export default () => {
     return (
         <div className="customPokemon page">
             <h1>ID {customPokemon.id} - {customPokemon.name}</h1>
-            <figure>
-                <img src={customPokemon.image} alt={`Picture of ${customPokemon.name} `} />
-            </figure>
-            <p><strong>Nickname:</strong>{customPokemon.nickname}</p>
-            {customPokemon.type && (
-                <div>
-                    <p><strong>Type:</strong> {Array.isArray(customPokemon.type) ? customPokemon.type.join(', ') : customPokemon.type}</p>
-                </div>
-            )}
-            <p><strong>Level:</strong> {customPokemon.level}</p>
-            {customPokemon.attacks && (
-                <div>
-                    <p><strong>Attacks:</strong> {Array.isArray(customPokemon.attacks) ? customPokemon.attacks.join(', ') : customPokemon.attacks}</p>
-                </div>
-            )}
-            <p><strong>Description:</strong>{customPokemon.description}</p>
-            <CustomPokemonForm customPokemon={customPokemon} />
-            {!confirmDelete ? (
-                <button onClick={handleConfrimRelease}>Release pokemon</button>
-
-            ) : (
-                <div className="confirm-delete-popup">
-                    <p>Are you sure that you want to release this pokemon?</p>
-                    <div className="delete-btn">
-                        <button onClick={handleConfirm}>Bye bye!</button>
-                        <button onClick={handleCancelRelease}>Stay with me.</button>
+            <div className="custom-container">
+                <figure className="custompokemon-img">
+                    <img src={customPokemon.image} alt={`Picture of ${customPokemon.name} `} />
+                </figure>
+                <p><strong>Nickname:</strong>{customPokemon.nickname}</p>
+                {customPokemon.type && (
+                    <div>
+                        <p><strong>Type:</strong> {Array.isArray(customPokemon.type) ? customPokemon.type.join(', ') : customPokemon.type}</p>
                     </div>
-                </div>
-            )}
+                )}
+                <p><strong>Level:</strong> {customPokemon.level}</p>
+                {customPokemon.attacks && (
+                    <div>
+                        <p><strong>Attacks:</strong> {Array.isArray(customPokemon.attacks) ? customPokemon.attacks.join(', ') : customPokemon.attacks}</p>
+                    </div>
+                )}
+                <p><strong>Description:</strong>{customPokemon.description}</p>
 
+                {!confirmDelete ? (
+                    <button onClick={handleConfrimRelease}>Release pokemon</button>
+
+                ) : (
+                    <div className="confirm-delete-popup">
+                        <p>Are you sure that you want to release this pokemon?</p>
+                        <div className="delete-btn">
+                            <button onClick={handleConfirm}>Bye bye!</button>
+                            <button onClick={handleCancelRelease}>Stay with me.</button>
+                        </div>
+                    </div>
+                )}
+            </div>
+            <div>
+                <h3>Customize your pokemon!</h3>
+                <CustomPokemonForm customPokemon={customPokemon} />
+            </div>
         </div>
     )
 };

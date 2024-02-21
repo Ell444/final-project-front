@@ -32,7 +32,7 @@ export default ({ customPokemon }) => {
             attacks: formData.attacks.split(',').map(a => a.trim())
         };
         try {
-            await axios.patch(`${VITE_API_URL}/customPokemon/${id}`, updatedPokemon, axiosHeaders(token));
+            await axios.patch(`${VITE_API_URL}/custompokemons/${id}`, updatedPokemon, axiosHeaders(token));
         } catch (error) {
             console.error('There was an error during the update of the custom pokemon:', error);
         }
@@ -40,37 +40,40 @@ export default ({ customPokemon }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-            <div>
-                <label>Nickname:</label>
-                <input
-                    type="text"
-                    id="nickname"
-                    name="nickname"
-                    value={formData.nickname}
-                    onChange={handleChange}
-                />
+            <div className="form-container">
+                <div className="input-container">
+                    <label>Nickname:</label>
+                    <input
+                        type="text"
+                        id="nickname"
+                        name="nickname"
+                        value={formData.nickname}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="input-container">
+                    <label>Level:</label>
+                    <input
+                        type="number"
+                        id="level"
+                        name="level"
+                        value={formData.level}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="input-container">
+                    <label>Attacks:</label>
+                    <input
+                        type="text"
+                        id="attacks"
+                        name="attacks"
+                        value={formData.attacks}
+                        onChange={handleChange}
+                    />
+                </div>
+                <button type="submit">Save</button>
             </div>
-            <div>
-                <label>Level:</label>
-                <input
-                    type="number"
-                    id="level"
-                    name="level"
-                    value={formData.level}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label>Attacks:</label>
-                <input
-                    type="text"
-                    id="attacks"
-                    name="attacks"
-                    value={formData.attacks}
-                    onChange={handleChange}
-                />
-            </div>
-            <button type="submit">Save</button>
+
         </form>
     )
 }

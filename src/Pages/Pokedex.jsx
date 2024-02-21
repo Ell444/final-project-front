@@ -73,7 +73,7 @@ export default () => {
                                     >
                                         {modalOpen === p._id &&
                                             <PokemonModal {...props} />}
-                                        {p.id} {p.name}
+                                        {p.id} - {p.name}
                                         <figure
                                             onClick={() => { setModalOpen(p._id) }}
                                             className="poke-img">

@@ -41,12 +41,17 @@ export default () => {
 
 
     return (
+
         <div className="my-team page">
+
             <h1>My Team</h1>
+            {team.length === 0 &&
+                <div className="info">You have no pokemon in your team yet. Go catch them all!</div>
+            }
             <ul className="pokemon-list">
                 {team.map((cp) => {
                     return (
-                        <Link to={`/custompokemons/${cp._id}`} key={cp._id}>
+                        <Link className="team-link" to={`/custompokemons/${cp._id}`} key={cp._id}>
                             <li className="pokemon-card">
                                 {customPokemon ? (
                                     <>

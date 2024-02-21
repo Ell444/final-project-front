@@ -59,6 +59,9 @@ export default ({ isOpen, setIsOpen, pokemon }) => {
         addToTeam(pokemon);
     };
 
+    const handleCapturePopup = () => {
+        setCapture(false)
+    }
     return (
         <>
             <dialog ref={dialogRef}>
@@ -90,7 +93,7 @@ export default ({ isOpen, setIsOpen, pokemon }) => {
             )}
 
             {capture && (
-                <div className="capture-popup">
+                <div className="capture-popup" onClick={handleCapturePopup}>
                     <figure>
                         <img src="/pokeball-gif.gif" alt="Pokeball animation" />
                     </figure>
