@@ -409,10 +409,11 @@ button {
     overflow: hidden;
   }
  }
- .escape-popup {
+ .escape-popup, .capture-popup, .confirm-delete-popup {
   position: fixed;
   top: 50%;
   left: 50%;
+  text-align: center;
   transform: translate(-50%, -50%);
   background-color: rgba(255, 255, 255, 0.9);
   border: 1px solid #ccc;
@@ -426,4 +427,13 @@ button {
     color: #333;
     margin: 0;
   }
+ }
+
+ .delete-btn {
+    display: flex;
+    font-family: inherit;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
  }

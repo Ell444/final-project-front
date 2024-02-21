@@ -8,6 +8,7 @@ import { useUser } from './context/UserContext'
 import NotFound from './Pages/NotFound'
 import Pokedex from './Pages/Pokedex'
 import MyTeam from './Pages/MyTeam'
+import CustomPokemon from './components/CustomPokemon'
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path='/login' element={!user ? <SignUser type='login' /> : <Navigate to="/" />} />
         <Route path='/pokemons' element={<Pokedex />} />
         <Route path='/myteam' element={<MyTeam />} />
+        <Route path='/custompokemons/:id' element={<CustomPokemon />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />

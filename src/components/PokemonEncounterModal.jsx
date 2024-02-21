@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useUser } from "../context/UserContext";
 import { axiosHeaders } from "../../lib/utilities";
+import { Link } from "react-router-dom";
 const { VITE_API_URL } = import.meta.env;
 
 
@@ -11,7 +12,8 @@ export default ({ isOpen, setIsOpen, pokemon }) => {
 
     const dialogRef = useRef(); //Utilizzo useRef per far riferimento al dialog con la variabile dialogRef.
     const [escape, setEscape] = useState(false);
-    const { token, user } = useUser();
+    const [capture, setCapture] = useState(false);
+    const { token, user, setUser } = useUser();
 
     useEffect(() => {
         if (isOpen) {
@@ -39,20 +41,22 @@ export default ({ isOpen, setIsOpen, pokemon }) => {
         setEscape(false);
     };
 
-    //Chiamata per aggiungere PokemonCustom al Team. **NOT WORKING. Torna sempre 404
+    //Chiamata per aggiungere PokemonCustom al Team.
     const addToTeam = async (pokemon) => {
         try {
             await axios.post(`${VITE_API_URL}/pokemonencounter/capture/${user._id}`, pokemon, axiosHeaders(token));
+            const response = await axios.get(`${VITE_API_URL}/user/${user._id}`, axiosHeaders(token));
+            /* setUser(response.data); */
             setIsOpen(false);
+            setCapture(true);
         } catch (error) {
             console.error('Error adding Pokemon to team', error);
         }
     };
 
-    //Funzione che gestisce il pulsante "throw pokeball" **NOT WORKING.
+    //Funzione che gestisce il pulsante "throw pokeball" 
     const handleThrowPokeball = () => {
         addToTeam(pokemon);
-        setIsOpen(false);
     };
 
     return (
@@ -82,6 +86,16 @@ export default ({ isOpen, setIsOpen, pokemon }) => {
             {escape && (
                 <div className="escape-popup" onClick={handleEscapePopup}>
                     <p>You escaped successfully! If you wanna find another wild pokemon, go to the tall grass again!</p>
+                </div>
+            )}
+
+            {capture && (
+                <div className="capture-popup">
+                    <figure>
+                        <img src="/pokeball-gif.gif" alt="Pokeball animation" />
+                    </figure>
+                    <p>Congratulation! You caught {pokemon.name}!</p>
+                    <p>Click <Link to={'/myteam'}>here</Link> to go to your team!</p>
                 </div>
             )}
         </>

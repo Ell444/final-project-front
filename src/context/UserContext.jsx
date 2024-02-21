@@ -57,14 +57,20 @@ export const UserProvider = ({ children }) => {
     }
 
     const logOut = () => {
-        changeData({ user: null });
+        changeData({});
     }
 
+    /*  const setUser = (user) => { // Definisco setUser per aggiornare i dati dell'utente
+         setUserData(user);
+         localStorage.setItem('storedUser', JSON.stringify(user));
+     }
+  */
     const value = {
         ...userData, // per estrarre separatamente dal context user e token
         signUp,
         logIn,
         logOut,
+        /* setUser, */
         error,
         loading
     }
