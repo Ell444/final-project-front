@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { axiosHeaders } from "../../lib/utilities";
 import { useUser } from "../context/UserContext";
 import { useParams } from "react-router-dom";
+import CustomPokemonForm from "./CustomPokemonForm";
 const { VITE_API_URL } = import.meta.env;
 
 export default () => {
@@ -78,6 +79,7 @@ export default () => {
                 </div>
             )}
             <p><strong>Description:</strong>{customPokemon.description}</p>
+            <CustomPokemonForm customPokemon={customPokemon} />
             {!confirmDelete ? (
                 <button onClick={handleConfrimRelease}>Release pokemon</button>
 
@@ -88,9 +90,9 @@ export default () => {
                         <button onClick={handleConfirm}>Bye bye!</button>
                         <button onClick={handleCancelRelease}>Stay with me.</button>
                     </div>
-
                 </div>
             )}
+
         </div>
     )
 };
