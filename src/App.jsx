@@ -9,6 +9,7 @@ import NotFound from './Pages/NotFound'
 import Pokedex from './Pages/Pokedex'
 import MyTeam from './Pages/MyTeam'
 import CustomPokemon from './components/CustomPokemon'
+import KantoPage from './Pages/KantoPage'
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path='/pokemons' element={<Pokedex />} />
         <Route path='/myteam' element={<MyTeam />} />
         <Route path='/custompokemons/:id' element={<CustomPokemon />} />
+        <Route path='/kanto' element={<KantoPage />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Footer />

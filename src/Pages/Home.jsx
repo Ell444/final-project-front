@@ -10,7 +10,11 @@ export default () => {
                 </figure>
                 <div className="text-container">
                     <p className="intro">Hi, my name is proffesor Oak. Looks like you want to be a Pokemon Trainer! If you're ready to begin your adventure, take a look at the pokedex, find your favourite pokemons, learn about them and most important, fetc... Ups, I meant, catch them all!</p>
-                    <Link to='pokemons' className="explore-btn">Go to the Pokedex</Link>
+                    <div className="link-container">
+                        <Link to='pokemons' className="explore-btn">Go to the Pokedex</Link>
+                        <Link to='kanto' className="explore-btn">Explore Kanto</Link>
+                    </div>
+
                 </div>
             </div>
         </div>

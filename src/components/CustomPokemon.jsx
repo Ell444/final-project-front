@@ -52,9 +52,13 @@ export default () => {
         setConfirmDelete(false);
     }
 
+    const handleDeletePopoup = () => {
+        setConfirmDelete(false)
+    };
+
     if (!customPokemon) {
         return (
-            <div>
+            <div className="info">
                 <p>This pokemon was released.</p>
             </div>
         )
@@ -67,7 +71,7 @@ export default () => {
                 <figure className="custompokemon-img">
                     <img src={customPokemon.image} alt={`Picture of ${customPokemon.name} `} />
                 </figure>
-                <p><strong>Nickname:</strong>{customPokemon.nickname}</p>
+                <p><strong>Nickname:</strong> {customPokemon.nickname}</p>
                 {customPokemon.type && (
                     <div>
                         <p><strong>Type:</strong> {Array.isArray(customPokemon.type) ? customPokemon.type.join(', ') : customPokemon.type}</p>
@@ -79,13 +83,13 @@ export default () => {
                         <p><strong>Attacks:</strong> {Array.isArray(customPokemon.attacks) ? customPokemon.attacks.join(', ') : customPokemon.attacks}</p>
                     </div>
                 )}
-                <p><strong>Description:</strong>{customPokemon.description}</p>
+                <p><strong>Description:</strong> {customPokemon.description}</p>
 
                 {!confirmDelete ? (
                     <button onClick={handleConfrimRelease}>Release pokemon</button>
 
                 ) : (
-                    <div className="confirm-delete-popup">
+                    <div className="confirm-delete-popup" onClick={handleDeletePopoup}>
                         <p>Are you sure that you want to release this pokemon?</p>
                         <div className="delete-btn">
                             <button onClick={handleConfirm}>Bye bye!</button>
