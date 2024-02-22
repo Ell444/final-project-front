@@ -13,7 +13,7 @@ export default () => {
                 <Link to="/">
                     <img src="/pokeball-logo.webp" alt="Logo" />
                 </Link>
-                <span>{user && user.email}</span>
+                <span className="nav-email">{user && user.email}</span>
             </figure>
             <menu>
                 {!user && <>

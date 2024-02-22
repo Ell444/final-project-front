@@ -44,7 +44,7 @@ export default () => {
 
         <div className="my-team page">
 
-            <h1>My Team</h1>
+            <h1 className="team-title">My Team</h1>
             {team.length === 0 &&
                 <div className="info">You have no pokemon in your team yet. Go catch them all!</div>
             }
