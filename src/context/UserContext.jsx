@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useState } from "react";
+import { axiosHeaders } from "../../lib/utilities";
 const { VITE_API_URL } = import.meta.env;
 
 const UserContext = createContext();
@@ -60,17 +61,22 @@ export const UserProvider = ({ children }) => {
         changeData({});
     }
 
-    /*  const setUser = (user) => { // Definisco setUser per aggiornare i dati dell'utente
-         setUserData(user);
-         localStorage.setItem('storedUser', JSON.stringify(user));
-     }
-  */
+    const updateUser = () => {
+        axios.get(`${VITE_API_URL}/user/${userData.user._id}`, axiosHeaders(userData.token))
+            .then(obj => {
+                setUserData({
+                    ...userData, //Faccio lo spread di userData per preservare il token.
+                    user: obj.data
+                })
+            }).catch(error => console.error(error))
+    }
+
     const value = {
         ...userData, // per estrarre separatamente dal context user e token
         signUp,
         logIn,
         logOut,
-        /* setUser, */
+        updateUser,
         error,
         loading
     }

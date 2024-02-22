@@ -13,7 +13,7 @@ export default ({ isOpen, setIsOpen, pokemon }) => {
     const dialogRef = useRef(); //Utilizzo useRef per far riferimento al dialog con la variabile dialogRef.
     const [escape, setEscape] = useState(false);
     const [capture, setCapture] = useState(false);
-    const { token, user, setUser } = useUser();
+    const { token, user, updateUser } = useUser();
 
     useEffect(() => {
         if (isOpen) {
@@ -46,9 +46,10 @@ export default ({ isOpen, setIsOpen, pokemon }) => {
         try {
             await axios.post(`${VITE_API_URL}/pokemonencounter/capture/${user._id}`, pokemon, axiosHeaders(token));
             const response = await axios.get(`${VITE_API_URL}/user/${user._id}`, axiosHeaders(token));
-            /* setUser(response.data); */
             setIsOpen(false);
             setCapture(true);
+            updateUser();
+
         } catch (error) {
             console.error('Error adding Pokemon to team', error);
         }

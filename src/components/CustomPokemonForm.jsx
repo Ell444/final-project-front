@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { axiosHeaders } from "../../lib/utilities";
 import { useUser } from "../context/UserContext";
 import { useParams } from "react-router-dom";
@@ -7,23 +7,14 @@ const { VITE_API_URL } = import.meta.env;
 
 export default ({ customPokemon }) => {
 
-    const defaultFormData = {
-        nickname: '',
-        level: '',
-        attacks: ''
-    };
+    const [formData, setFormData] = useState({
+        nickname: customPokemon.nickname,
+        level: customPokemon.level,
+        attacks: customPokemon.attacks.join(', ')
+    });
 
-    const [formData, setFormData] = useState(defaultFormData);
-    useEffect(() => {
-        if (customPokemon) {
-            const { nickname, level, attacks } = customPokemon
-            setFormData({
-                nickname: customPokemon.nickname,
-                level: customPokemon.level,
-                attacks: customPokemon.attacks.join(', ')
-            })
-        }
-    }, [customPokemon])
+    const { token, updateUser } = useUser();
+    const { id } = useParams();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -33,9 +24,6 @@ export default ({ customPokemon }) => {
         });
     };
 
-    const { token } = useUser();
-    const { id } = useParams();
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const updatedPokemon = {
@@ -44,9 +32,8 @@ export default ({ customPokemon }) => {
             attacks: formData.attacks.split(',').map(a => a.trim())
         };
         try {
-            await axios.patch(`${VITE_API_URL}/custompokemons/${id}`,
-                updatedPokemon,
-                axiosHeaders(token));
+            await axios.patch(`${VITE_API_URL}/custompokemons/${id}`, updatedPokemon, axiosHeaders(token));
+            updateUser();
         } catch (error) {
             console.error('There was an error during the update of the custom pokemon:', error);
         }
@@ -54,7 +41,6 @@ export default ({ customPokemon }) => {
 
     return (
         <form onSubmit={handleSubmit}>
-
             <div className="form-container">
                 <div className="input-container">
                     <label>Nickname:</label>
@@ -64,7 +50,6 @@ export default ({ customPokemon }) => {
                         name="nickname"
                         value={formData.nickname}
                         onChange={handleChange}
-                        setFormData=""
                     />
                 </div>
                 <div className="input-container">

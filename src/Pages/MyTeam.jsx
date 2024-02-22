@@ -38,8 +38,6 @@ export default () => {
         fetchCustomPokemon();
     }, [user, token]);
 
-
-
     return (
 
         <div className="my-team page">

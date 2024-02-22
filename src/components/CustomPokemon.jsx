@@ -8,7 +8,7 @@ const { VITE_API_URL } = import.meta.env;
 
 export default () => {
 
-    const { token } = useUser();
+    const { token, updateUser } = useUser();
     const [error, setError] = useState(false);
     const [customPokemon, setCustomPokemon] = useState(null);
     const [confirmDelete, setConfirmDelete] = useState(false);
@@ -34,6 +34,7 @@ export default () => {
         try {
             await axios.delete(`${VITE_API_URL}/custompokemons/${id}`, axiosHeaders(token));
             setCustomPokemon(null);
+            updateUser();
         } catch (error) {
             console.error('There was an error while releasing your pokemon:', error);
         }
