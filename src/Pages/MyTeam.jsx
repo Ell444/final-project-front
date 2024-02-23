@@ -7,7 +7,7 @@ const { VITE_API_URL } = import.meta.env;
 
 export default () => {
 
-    const { user, token } = useUser();
+    const { user, token, updateUser } = useUser();
     const [error, setError] = useState(false);
     const [team, setTeam] = useState([]);
     const [customPokemon, setCustomPokemon] = useState(null);
@@ -18,6 +18,7 @@ export default () => {
                 if (user) {
                     const response = axios.get(`${VITE_API_URL}/user/${user._id}`, axiosHeaders(token));
                     setTeam(user.team);
+                    updateUser();
                 }
             } catch (error) {
                 console.error(error);
@@ -29,6 +30,7 @@ export default () => {
             try {
                 const response = await axios.get(`${VITE_API_URL}/custompokemons`, axiosHeaders(token))
                 setCustomPokemon(response.data);
+                updateUser();
             } catch (error) {
                 console.error(error);
                 setError(true);

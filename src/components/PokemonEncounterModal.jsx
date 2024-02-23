@@ -70,7 +70,7 @@ export default ({ isOpen, setIsOpen, pokemon }) => {
                     <button onClick={handleCloseModal}>X</button>
                 </div>
                 <section className="poke-container">
-                    <h2>Oh! A wild pokemon appeard!</h2>
+                    <h2>Oh! A wild pokemon appeared!</h2>
                     <figure className="img-container">
                         <img src={pokemon.image} alt="" />
                     </figure>
