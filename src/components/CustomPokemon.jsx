@@ -72,21 +72,30 @@ export default () => {
                 <figure className="custompokemon-img">
                     <img src={customPokemon.image} alt={`Picture of ${customPokemon.name} `} />
                 </figure>
-                <p><strong>Nickname:</strong> {customPokemon.nickname}</p>
-                {customPokemon.type && (
+                <div className="cp-text-container">
+
                     <div>
-                        <p><strong>Type:</strong> {Array.isArray(customPokemon.type) ? customPokemon.type.join(', ') : customPokemon.type}</p>
+                        <p><strong>Nickname:</strong> {customPokemon.nickname}</p>
                     </div>
-                )}
-                <p><strong>Level:</strong> {customPokemon.level}</p>
-                {customPokemon.attacks && (
+                    {customPokemon.type && (
+                        <div>
+                            <p><strong>Type:</strong> {Array.isArray(customPokemon.type) ? customPokemon.type.join(', ') : customPokemon.type}</p>
+                        </div>
+                    )}
                     <div>
-                        <p><strong>Attacks:</strong> {Array.isArray(customPokemon.attacks) ? customPokemon.attacks.join(', ') : customPokemon.attacks}</p>
+                        <p><strong>Level:</strong> {customPokemon.level}</p>
                     </div>
-                )}
-                <div>
-                    <p><strong>Description:</strong> {customPokemon.description}</p>
+                    {customPokemon.attacks && (
+                        <div>
+                            <p><strong>Attacks:</strong> {Array.isArray(customPokemon.attacks) ? customPokemon.attacks.join(', ') : customPokemon.attacks}</p>
+                        </div>
+                    )}
+                    <div>
+                        <p><strong>Info:</strong> {customPokemon.description}</p>
+                    </div>
+
                 </div>
+
                 {!confirmDelete ? (
                     <button onClick={handleConfrimRelease}>Release pokemon</button>
 

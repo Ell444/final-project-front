@@ -139,6 +139,15 @@ button {
 
 //MEDIA QUERIES 
 @media only screen and (max-width: 640px) {
+  .navbar {
+      .navbar-img {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      img {
+        width: 50px;
+        transition: transform 0.3s ease;
+    }}}
   .nav-email{
     display: none;
   }   
@@ -233,8 +242,38 @@ button {
 }}
  
  @media only screen and (max-width: 640px) {
-   
- }
+  .home-page {
+    .content {  
+      grid-template-columns: 1fr;
+      .home-img {
+        width: 100%;
+  
+        img {
+          max-width: 350px;
+          height: auto;
+          border-radius: 1rem;
+          box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+      }
+    
+}
+.text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  max-width: 350px;
+  .intro {
+    font-size: 1.2rem;
+    color: #ccc; 
+  } }
+  .link-container{
+   max-width: 350px;
+}
+.explore-btn {
+  padding: .2rem .5rem;
+  max-width: 150px;
+}}}
 
  //------------------------------------------------------//
 
@@ -346,7 +385,7 @@ button {
  }
 }
  
- @media only screen and (max-width: 640px) {
+ @media (max-width: 640px) {
    .pokemon-list {
   grid-template-columns: repeat(2, 1fr);
  }
@@ -529,6 +568,23 @@ button {
     overflow: hidden;
   }
  }
+//MEDIA QUERIES 
+ @media only screen and (max-width: 640px) {
+  .poke-container {
+  img {
+    width: 200px;
+    height: auto;
+    border-radius: 0.3rem;
+  }
+  p{
+    margin: 0.3rem 0;
+  }
+  .btn-container {
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+ }}
 
  //----------------------------------------------------------//
 
@@ -560,8 +616,20 @@ button {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    margin-bottom: 1rem;
+    margin-top: 1rem;
  }
+
+ //MEDIA QUERIES
+@media (max-width: 960px) {
+ 
+ }
+  
+  @media (max-width: 640px) {
+    .delete-btn {
+      flex-direction: column;
+      margin-top: 1rem;
+   }
+  }
 
  //----------------------------------------------------------//
 
@@ -596,6 +664,10 @@ button {
         width: 150px;
       }
     }
+    .cp-text-container {
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
   }
   .input-container{
     display: flex;
@@ -605,6 +677,7 @@ button {
       width: 200px;
       padding: 0.3rem;
       cursor: pointer;
+      margin-bottom: 0.5rem;
     }
   }
  }
