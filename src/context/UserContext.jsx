@@ -5,13 +5,13 @@ const { VITE_API_URL } = import.meta.env;
 
 const UserContext = createContext();
 
-export const UserProvider = ({ children }) => {
+export const UserProvider = ({ children }) => { //children: tutto ciò che verrà incluso nel conesto dello User.
 
     const oldValue = localStorage.getItem('storedUser'); //oldvalue = ciò che sta già salvato nel localstorage
 
     const [userData, setUserData] = useState(oldValue !== null ? JSON.parse(oldValue) : null);
 
-    const changeData = (newValue) => {
+    const changeData = (newValue) => { //funzione che serve per salvare lo user aggiornato nel localStorage
         setUserData(newValue);
         localStorage.setItem('storedUser', JSON.stringify(newValue));
     }
@@ -61,6 +61,7 @@ export const UserProvider = ({ children }) => {
         changeData({});
     }
 
+    //Funzione che mi serve per tenere l'utente aggiornato col suo team quando cattura/libera un pokemon
     const updateUser = () => {
         axios.get(`${VITE_API_URL}/user/${userData.user._id}`, axiosHeaders(userData.token))
             .then(obj => {
@@ -88,7 +89,7 @@ export const UserProvider = ({ children }) => {
     )
 }
 
-export const useUser = () => {
+export const useUser = () => { //Funzione che serve per lanciare un errore quando cerco di usare UserContext su un componente non inculso nell' UserProvider.
     const context = useContext(UserContext);
     if (context === undefined) {
         throw new Error('useUser must be used within a UserProvider.')

@@ -57,7 +57,8 @@ export default () => {
                                             <img src={cp.image} alt={`Picture of ${cp.name}`} />
                                         </figure>
                                         <p><strong>Name:</strong> {cp.name}</p>
-                                        <p><strong>ID:</strong> {cp.id}</p>
+                                        <p><strong>Nickname:</strong> {cp.nickname && cp.nickname}</p>
+                                        <p><strong>Level:</strong> {cp.level}</p>
                                     </>
                                 ) : (
                                     <div className="loader">

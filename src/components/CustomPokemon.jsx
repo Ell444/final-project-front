@@ -34,7 +34,7 @@ export default () => {
         try {
             await axios.delete(`${VITE_API_URL}/custompokemons/${id}`, axiosHeaders(token));
             setCustomPokemon(null);
-            updateUser();
+            updateUser(); //Funzione che mi serve per aggiornare lo User quando "libera" un pokemon (vedi userContext)
         } catch (error) {
             console.error('There was an error while releasing your pokemon:', error);
         }
@@ -84,8 +84,9 @@ export default () => {
                         <p><strong>Attacks:</strong> {Array.isArray(customPokemon.attacks) ? customPokemon.attacks.join(', ') : customPokemon.attacks}</p>
                     </div>
                 )}
-                <p><strong>Description:</strong> {customPokemon.description}</p>
-
+                <div>
+                    <p><strong>Description:</strong> {customPokemon.description}</p>
+                </div>
                 {!confirmDelete ? (
                     <button onClick={handleConfrimRelease}>Release pokemon</button>
 

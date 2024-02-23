@@ -34,6 +34,7 @@ export default ({ customPokemon }) => {
         try {
             await axios.patch(`${VITE_API_URL}/custompokemons/${id}`, updatedPokemon, axiosHeaders(token));
             updateUser();
+            window.location.reload(); //Serve per aggiornare in automatico la pagina dopo le modifiche del CP
         } catch (error) {
             console.error('There was an error during the update of the custom pokemon:', error);
         }
