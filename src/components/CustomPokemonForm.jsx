@@ -18,10 +18,26 @@ export default ({ customPokemon }) => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
+        if (name === 'level') {
+            const levelValue = parseInt(value);
+            if (levelValue > 100) {
+                setFormData({
+                    ...formData,
+                    [name]: 100
+                });
+            } else {
+                setFormData({
+                    ...formData,
+                    [name]: levelValue
+                });
+            }
+        } else {
+            setFormData({
+                ...formData,
+                [name]: value
+            });
+        }
+
     };
 
     const handleSubmit = async (e) => {
