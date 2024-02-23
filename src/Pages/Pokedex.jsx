@@ -11,7 +11,7 @@ export default () => {
 
     const [pokemonsData, setPokemonsData] = useState();
     const [error, setError] = useState();
-    const { token } = useUser();
+    const { token, user } = useUser();
     const [modalOpen, setModalOpen] = useState(null);
     const [encounteredPokemon, setEncounteredPokemon] = useState(null);
     const [isEncouterModalOpen, setIsEncounterModalOpen] = useState(null);
@@ -38,6 +38,10 @@ export default () => {
 
     //Funzione che mi gestisce l'apparizione randomica di un pokemon al click del pulsante.
     const handleEncounterPokemon = async () => {
+        if (!user) {
+            alert('You must be logged in to go to the tall grass.')
+            return
+        }
         try {
             const randomPokemon = await getRandomPokemon();
             setEncounteredPokemon(randomPokemon);
