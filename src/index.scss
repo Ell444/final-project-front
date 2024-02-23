@@ -162,9 +162,8 @@ button {
     text-align: center;
     font-size: 2.5rem;
     color: #fff; 
-    padding: 2.5rem;
+    padding: 1.5rem;
   }
-
   .content {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -174,20 +173,20 @@ button {
 
     .home-img {
       width: 100%;
-
+      padding: 1rem 0;
       img {
         max-width: 100%;
         height: auto;
         border-radius: 1rem;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 4px 6px rgba(230, 222, 222, 0.1);
       }
     }
-
     .text-container {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
       gap: 1.5rem;
+      padding: 1rem 0;
       .intro {
         font-size: 1.2rem;
         color: #ccc; 
@@ -245,11 +244,10 @@ button {
   .home-page {
     .content {  
       grid-template-columns: 1fr;
+      justify-content: center;
       .home-img {
-        width: 100%;
-  
         img {
-          max-width: 350px;
+          max-width: 335px;
           height: auto;
           border-radius: 1rem;
           box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -262,7 +260,8 @@ button {
   flex-direction: column;
   align-items: flex-start;
   gap: 1rem;
-  max-width: 350px;
+  max-width: 330px;
+  text-align: center;
   .intro {
     font-size: 1.2rem;
     color: #ccc; 
